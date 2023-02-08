@@ -1,2 +1,3 @@
 # Reuters-21578-NLP-Analysis
 Explore the Reuters-21578 collection and implement text mining techniques for data analysis
+This project is focused on working with the Reuters-21578 collection, a text corpus consisting of over 500,000 lines. The project was developed using Python, and includes various tasks. The code in this repository showcases my skills in information retrieval, particularly in the areas of text mining and natural language processing. I have demonstrated my ability to work with large data sets, analyze text data, and apply computational techniques to extract meaningful information."
