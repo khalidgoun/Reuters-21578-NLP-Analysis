@@ -1,4 +1,4 @@
-# first task
+# first task:  Understand what each field means.
 # The Reuters-21578 collection is distributed in 22 files. Each of the first 21 files contain 1000 documents
 # while the last document contains 578 documents.
 # A document type declaration line appears at the top of each of the 22 files. <!DOCTYPE lewis SYSTEM "lewis.dtd">
@@ -35,8 +35,8 @@
 # d. <TITLE>, </TITLE>: Title of the story
 # e. <BODY>, </BODY>: The main text of the story.
 ##
-# second task
-with open("test1.txt", "r") as f:  # Open the file in read mode
+# second task: split the single file into files, each containing a single news item.
+with open("reuters.txt", "r") as f:  # Open the file in read mode
     text = f.read()  # Read data from given text file
     rep_text = text.replace('"', "").replace("=", "").replace(">", "").replace("NEWID", "répartir NEWID  ")  # i
     # replace some punctuations by nothing and replace every occurrence NEWID by répartir NEWID
@@ -51,11 +51,11 @@ with open("test1.txt", "r") as f:  # Open the file in read mode
             # time there is NEWID it's going to take all the data comes after
             f.write(i)  # and write it in individual text files
 ##
-# third task
+# third task: find 100 stop words in the collection,and Compare your stop words to the list given in as part of the data.
 from nltk.corpus import stopwords
 sl = []
 slr = []
-reuters = open('test1.txt', 'r')  # Open the file reuters in read mode
+reuters = open('reuters.txt', 'r')  # Open the file reuters in read mode
 stopwords = list(set(stopwords.words('english')))  # import stop words the library nltk
 for line in stopwords:  # Loop through each line of the file stopwords
     split_t = line.split()  # Split the lines into words
@@ -83,7 +83,7 @@ for word in slr:
 print("Overlap between the two lists:", overlap)
 print("the words are : \n " , list)
 ##
-# fourth task
+# fourth task: construct the inverted index of the collection
 import re
 import nltk
 from nltk.tokenize import word_tokenize
@@ -103,10 +103,8 @@ for i, doc in enumerate(corpus):  # enumerate each document to produce doc id
 for element, id in inverted_index.items():
     print(f"{element}:{(id)}")
 
-
-###final submission
 ##
-# fifth task
+# fifth task: processes AND queries.
 def process_query(query1, query2, text):
     documents = text.split(
         "</BODY>")  # Split the text into a list of documents, using the <BODY> and </BODY> tags as delimiters
@@ -125,7 +123,7 @@ def process_query(query1, query2, text):
     return matching_documents  # Return the list of matching documents
 
 
-with open("test1.txt") as f:
+with open("reuters.txt") as f:
     text = f.read()  # read the text from the reuters
 query1 = "Bahia"  # define the first query
 query2 = "levels"  # define the second query
@@ -135,7 +133,7 @@ for document_id, document in matching_documents:  # use the matching_documents v
     print("the matching documents ID using AND queries are ID:", document_id)  # print out the ID
 
 ##
-# sixth task
+# sixth task: find the most similar document to a query using cosine similarity.
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -167,7 +165,7 @@ def find_most_similar(query, text):
     return document_ids[most_similar_index]  # Return the ID of the most similar document
 
 
-with open("test1.txt") as f:
+with open("reuters.txt") as f:
     text = f.read()
 query = "Comissaria "  # define the query
 most_similar_id = find_most_similar(query, text)
